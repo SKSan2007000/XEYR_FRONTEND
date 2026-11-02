@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07132e">
+  <title>Certificate Verification | XEYR Technologies Events Portal</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="site-shell">
+  <header class="header">
+    <a href="/" class="brand portal-brand-link" aria-label="Return to XEYR Technologies Homepage" title="Return to XEYR Technologies Homepage">
+      <img src="/assets/xeyr-symbol.png" alt="XEYR Technologies Logo" class="brand-symbol">
+      <span><strong>XEYR</strong><small>TECHNOLOGIES PRIVATE LIMITED</small></span>
+    </a>
+    <button class="menu-toggle" id="portal-menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="nav" id="portal-nav" aria-label="Events Portal Navigation">
+      <a href="/" class="nav-link portal-brand-link">Home</a>
+      <a href="/events/" class="nav-link">Explore Events</a>
+      <a href="/events/#gallery" class="nav-link">Gallery</a>
+      <a href="/events/#leaderboard" class="nav-link">Leaderboard</a>
+      <a href="/events/#contact-section" class="nav-link">Contact</a>
+      <span id="nav-auth-slot"><a href="/dashboard/" class="nav-link">Sign In</a></span>
+      <a href="/events/" class="button button-small button-primary">Browse Events ↗</a>
+    </nav>
+  </header>
+
+  <main style="padding: 60px 0 100px;">
+    <div class="section-wrap" style="max-width: 800px;">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <div class="pill" style="margin-bottom: 16px;">
+          <span class="status-dot"></span> CRYPTOGRAPHIC AUTHENTICITY CHECK
+        </div>
+        <h1 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 12px; color: #07132e;">
+          Verify <span class="gradient-text">XEYR Certificate</span>
+        </h1>
+        <p style="color: #64748b; font-size: 1rem; line-height: 1.7; max-width: 600px; margin: 0 auto;">
+          Enter the unique Certificate ID or Token printed on your issued document to verify participant credentials and session completion.
+        </p>
+      </div>
+
+      <!-- Verification Input Box -->
+      <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 34px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); margin-bottom: 30px;">
+        <form id="verify-form" style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <input type="text" id="cert-id-input" placeholder="e.g. XEYR-CERT-2026-98421" required style="flex: 1; min-width: 260px; padding: 12px 16px; border: 1.5px solid #cbd5e1; border-radius: 10px; font-size: 1rem; font-family: monospace;">
+          <button type="submit" class="button button-primary" id="btn-verify" style="min-height: 48px; padding: 0 24px;">
+            Verify Credential ↗
+          </button>
+        </form>
+      </div>
+
+      <!-- Verification Result Card -->
+      <div id="verify-result" style="display: none; background: #fff; border-radius: 20px; padding: 34px; border: 1px solid #e2e8f0; box-shadow: 0 12px 35px rgba(0,0,0,0.05);">
+        <div id="verify-status-banner" style="display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-radius: 12px; font-weight: 700; font-size: 0.92rem; margin-bottom: 24px;"></div>
+        
+        <div id="cert-details-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 0.9rem;">
+          <div><small style="color: #64748b; display: block;">Participant Name</small><strong id="res-name" style="color: #07132e; font-size: 1.1rem;"></strong></div>
+          <div><small style="color: #64748b; display: block;">Certificate ID</small><code id="res-id" style="color: #1465f4; font-weight: 700;"></code></div>
+          <div><small style="color: #64748b; display: block;">Workshop / Event</small><strong id="res-event" style="color: #07132e;"></strong></div>
+          <div><small style="color: #64748b; display: block;">Issue Date</small><span id="res-date"></span></div>
+          <div><small style="color: #64748b; display: block;">Authorized Signatory</small><span id="res-signatory"></span></div>
+          <div><small style="color: #64748b; display: block;">Verification Status</small><span class="badge" style="background: #ecfdf5; color: #065f46; font-weight: 700;">✓ VALID &amp; GENUINE</span></div>
+        </div>
+
+        <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid #e2e8f0; display: flex; justify-content: flex-end; gap: 12px;">
+          <a id="res-render-link" href="#" target="_blank" class="button button-small button-outline">View Certificate ↗</a>
+          <a id="res-download-link" href="#" target="_blank" class="button button-small button-primary">Download PDF ↗</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 4-Column Footer with "Visit Our Website" -->
+  <footer class="enhanced-footer">
+    <div class="footer-4col-grid">
+      <div class="footer-col">
+        <a href="/" class="footer-brand-title portal-brand-link">
+          <img src="/assets/xeyr-symbol.png" alt="XEYR Symbol">
+          <div>
+            <strong>XEYR</strong>
+            <small style="display: block; font-size: 0.48rem; color: #7f91b1; letter-spacing: 0.12em; font-weight: 700;">TECHNOLOGIES PRIVATE LIMITED</small>
+          </div>
+        </a>
+        <div class="footer-tagline-text" id="footer-tagline">Ideas. Technology. Real Impact.</div>
+        <p id="footer-desc">
+          XEYR Technologies Private Limited develops enterprise software, intelligent automation, and hands-on learning experiences.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="/events/#events-catalog">Explore Events</a></li>
+          <li><a href="/events/#events-catalog">Upcoming Events</a></li>
+          <li><a href="/events/#events-catalog">Completed Events</a></li>
+          <li><a href="/events/#gallery">Gallery</a></li>
+          <li><a href="/events/#leaderboard">Leaderboard</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/events/#sec-who-we-are">Who We Are</a></li>
+          <li><a href="/#services" class="visit-company-link">Services</a></li>
+          <li><a href="/events/#contact-section">Contact Us</a></li>
+        </ul>
+        <a href="/" class="btn-visit-company visit-company-link">
+          Visit Our Website <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Policies and Support</h4>
+        <ul>
+          <li><button type="button" class="open-policy-btn" data-policy-type="privacy">Privacy Policy</button></li>
+          <li><button type="button" class="open-policy-btn" data-policy-type="terms">Terms and Conditions</button></li>
+          <li><button type="button" class="open-policy-btn" data-policy-type="refund">Refund Policy</button></li>
+          <li><a href="/verify-certificate/">Certificate Verification</a></li>
+          <li><a href="mailto:xeyrtechnologies@gmail.com">Event Support</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="enhanced-footer-bottom">
+      <div>© <span class="current-year"></span> XEYR Technologies Private Limited. All rights reserved.</div>
+      <div class="enhanced-footer-bottom-links">
+        <button type="button" class="open-policy-btn" data-policy-type="privacy">Privacy Policy</button>
+        <span>·</span>
+        <button type="button" class="open-policy-btn" data-policy-type="terms">Terms</button>
+        <span>·</span>
+        <button type="button" class="open-policy-btn" data-policy-type="refund">Refunds</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Policy Dialog -->
+  <dialog class="register-dialog" id="policy-dialog">
+    <form method="dialog" class="dialog-close-form"><button class="dialog-close" aria-label="Close form">×</button></form>
+    <p class="eyebrow">XEYR TECHNOLOGIES · LEGAL &amp; POLICIES</p>
+    <h2 id="policy-modal-title" style="font-size: 1.5rem;">Policy Title</h2>
+    <div id="policy-modal-body" style="color: #475569; font-size: 0.88rem; line-height: 1.7; margin-top: 14px;"></div>
+  </dialog>
+
+  <script src="/portal.js"></script>
+  <script>
+    const form = document.getElementById('verify-form');
+    const input = document.getElementById('cert-id-input');
+    const resultBox = document.getElementById('verify-result');
+    const banner = document.getElementById('verify-status-banner');
+
+    async function checkCert(id) {
+      if (!id) return;
+      banner.style.background = '#eff6ff';
+      banner.style.color = '#1e40af';
+      banner.textContent = 'Verifying certificate cryptographic checksum...';
+      resultBox.style.display = 'block';
+
+      try {
+        const res = await fetch(`/api/events/certificates/${encodeURIComponent(id)}/verify/`);
+        const data = await res.json();
+
+        if (res.ok && data.is_valid && data.certificate) {
+          const c = data.certificate;
+          banner.style.background = '#ecfdf5';
+          banner.style.color = '#065f46';
+          banner.textContent = '✓ Valid & Authentic Certificate Issued by XEYR Technologies Private Limited';
+
+          document.getElementById('res-name').textContent = c.participant_name;
+          document.getElementById('res-id').textContent = c.certificate_id;
+          document.getElementById('res-event').textContent = c.event_title;
+          document.getElementById('res-date').textContent = c.issue_date;
+          document.getElementById('res-signatory').textContent = `${c.signatory_name} (${c.signatory_title})`;
+          document.getElementById('res-render-link').href = `/api/certificates/${c.certificate_id}/render/`;
+          document.getElementById('res-download-link').href = `/api/certificates/${c.certificate_id}/download/`;
+          document.getElementById('cert-details-grid').style.display = 'grid';
+        } else {
+          banner.style.background = '#fef2f2';
+          banner.style.color = '#991b1b';
+          banner.textContent = '✕ No verified certificate found with this identifier, or certificate has been revoked.';
+          document.getElementById('cert-details-grid').style.display = 'none';
+        }
+      } catch {
+        banner.style.background = '#fef2f2';
+        banner.style.color = '#991b1b';
+        banner.textContent = '✕ Error communicating with verification server. Please try again.';
+        document.getElementById('cert-details-grid').style.display = 'none';
+      }
+    }
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      checkCert(input.value.trim());
+    });
+
+    // Check if ID is in path or query
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    if (parts[1]) {
+      input.value = parts[1];
+      checkCert(parts[1]);
+    } else {
+      const q = new URLSearchParams(window.location.search).get('id');
+      if (q) {
+        input.value = q;
+        checkCert(q);
+      }
+    }
+  </script>
+</body>
+</html>
+

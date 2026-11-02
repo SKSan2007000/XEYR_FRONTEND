@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07132e">
+  <title>Event Details | XEYR Technologies Events Portal</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
+</head>
+<body class="site-shell">
+  <header class="header">
+    <a href="/" class="brand portal-brand-link" aria-label="Return to XEYR Technologies Homepage" title="Return to XEYR Technologies Homepage">
+      <img src="/assets/xeyr-symbol.png" alt="XEYR Technologies Logo" class="brand-symbol">
+      <span><strong>XEYR</strong><small>TECHNOLOGIES PRIVATE LIMITED</small></span>
+    </a>
+    <button class="menu-toggle" id="portal-menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="nav" id="portal-nav" aria-label="Events Portal Navigation">
+      <a href="/" class="nav-link portal-brand-link">Home</a>
+      <a href="/events/" class="nav-link">Explore Events</a>
+      <a href="/events/#gallery" class="nav-link">Gallery</a>
+      <a href="/events/#leaderboard" class="nav-link">Leaderboard</a>
+      <a href="/events/#contact-section" class="nav-link">Contact</a>
+      <span id="nav-auth-slot"><a href="/dashboard/" class="nav-link">Sign In</a></span>
+      <a href="/events/" class="button button-small button-primary">Browse All Events ↗</a>
+    </nav>
+  </header>
+
+  <main style="padding: 40px 0 80px;">
+    <div class="section-wrap">
+      <div style="margin-bottom: 20px;">
+        <a href="/events/" style="font-size: 0.85rem; color: #1465f4; font-weight: 700; text-decoration: none;">← Back to All Events</a>
+      </div>
+
+      <div class="event-detail-layout" id="event-detail-layout">
+        <!-- Left: Comprehensive Event Information Panel -->
+        <div class="event-detail-left">
+          <!-- Poster visual -->
+          <div id="event-detail-visual" style="height: 340px; border-radius: 20px; background-size: cover; background-position: center; position: relative; border: 1px solid #e2e8f0; background-color: #07132e; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.06);">
+            <span class="event-tag" id="event-detail-tag" style="position: absolute; top: 16px; left: 16px; background: rgba(7,19,46,0.85); color: #fff; padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.05em; backdrop-filter: blur(4px);">WORKSHOP</span>
+            <span id="event-detail-mode-badge" style="position: absolute; top: 16px; right: 16px; background: rgba(20,101,244,0.9); color: #fff; padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.05em; backdrop-filter: blur(4px);">ONLINE</span>
+          </div>
+
+          <!-- Title and Metadata -->
+          <div>
+            <h1 id="event-detail-title" style="font-size: clamp(1.8rem, 3.2vw, 2.4rem); font-weight: 800; line-height: 1.25; margin-bottom: 14px; color: #07132e;">
+              Loading Event Details...
+            </h1>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; font-size: 0.88rem; color: #475569;">
+              <span id="event-detail-date" style="background: #f8fafc; padding: 6px 12px; border-radius: 8px; border: 1px solid #e2e8f0;">📅 Loading date...</span>
+              <span id="event-detail-venue" style="background: #f8fafc; padding: 6px 12px; border-radius: 8px; border: 1px solid #e2e8f0;">📍 Loading venue...</span>
+              <span id="event-detail-organizer" style="background: #f8fafc; padding: 6px 12px; border-radius: 8px; border: 1px solid #e2e8f0;">🏢 XEYR Technologies</span>
+              <span id="event-detail-fee" class="badge" style="background: #eff6ff; color: #1465f4; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid #bfdbfe;">Free Entry</span>
+            </div>
+          </div>
+
+          <!-- Speaker / Mentor Profile -->
+          <div id="event-speaker-card" style="background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 22px; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
+            <p class="eyebrow" style="color: #1465f4; margin-bottom: 12px;">SESSION LEADER &amp; MENTOR</p>
+            <div style="display: flex; align-items: center; gap: 18px;">
+              <div id="speaker-avatar-wrap" style="width: 64px; height: 64px; border-radius: 50%; overflow: hidden; background: #e2e8f0; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+                <img id="speaker-photo" src="" alt="Speaker Photo" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                <svg id="speaker-fallback-avatar" width="36" height="36" viewBox="0 0 24 24" fill="#94a3b8"><path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z"/></svg>
+              </div>
+              <div>
+                <h3 id="speaker-name" style="font-size: 1.15rem; font-weight: 800; color: #07132e; margin: 0 0 4px 0;">Lead Technology Instructor</h3>
+                <p id="speaker-title" style="font-size: 0.85rem; color: #64748b; margin: 0 0 6px 0;">Technical Specialist · XEYR Technologies</p>
+                <p id="speaker-bio" style="font-size: 0.84rem; color: #475569; margin: 0; line-height: 1.5;">Experienced software architect guiding practical system implementations and career technical skills.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Overview / Description -->
+          <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 26px;">
+            <h2 style="font-size: 1.3rem; font-weight: 800; color: #07132e; margin-bottom: 14px;">Event Overview</h2>
+            <div id="event-detail-desc" style="color: #475569; font-size: 0.95rem; line-height: 1.8;"></div>
+          </div>
+
+          <!-- Topics Covered / Learning Outcomes -->
+          <div id="event-topics-card" style="background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 26px;">
+            <h2 style="font-size: 1.3rem; font-weight: 800; color: #07132e; margin-bottom: 14px;">Topics &amp; Learning Outcomes</h2>
+            <div id="event-topics-list" style="display: grid; gap: 10px;">
+              <div style="display: flex; gap: 10px; align-items: flex-start; color: #334155; font-size: 0.92rem;">
+                <span style="color: #1465f4; font-weight: bold;">✓</span>
+                <span>Core architectural principles and real-world design fundamentals.</span>
+              </div>
+              <div style="display: flex; gap: 10px; align-items: flex-start; color: #334155; font-size: 0.92rem;">
+                <span style="color: #1465f4; font-weight: bold;">✓</span>
+                <span>Hands-on implementation and interactive code exercises.</span>
+              </div>
+              <div style="display: flex; gap: 10px; align-items: flex-start; color: #334155; font-size: 0.92rem;">
+                <span style="color: #1465f4; font-weight: bold;">✓</span>
+                <span>Verified digital credential issued upon attendance and session review.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Agenda / Schedule -->
+          <div id="event-agenda-card" style="background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 26px;">
+            <h2 style="font-size: 1.3rem; font-weight: 800; color: #07132e; margin-bottom: 14px;">Session Agenda</h2>
+            <div id="event-agenda-list" style="display: grid; gap: 12px;">
+              <div style="display: flex; gap: 16px; border-left: 2px solid #1465f4; padding-left: 14px;">
+                <strong style="color: #1465f4; font-size: 0.88rem; width: 75px; flex-shrink: 0;">Part 1</strong>
+                <div>
+                  <div style="font-weight: 700; color: #07132e; font-size: 0.92rem;">Foundations &amp; Concepts</div>
+                  <div style="color: #64748b; font-size: 0.84rem;">Key technical principles and setup guidance.</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 16px; border-left: 2px solid #27d4f4; padding-left: 14px;">
+                <strong style="color: #0284c7; font-size: 0.88rem; width: 75px; flex-shrink: 0;">Part 2</strong>
+                <div>
+                  <div style="font-weight: 700; color: #07132e; font-size: 0.92rem;">Hands-on Workshop &amp; Q&amp;A</div>
+                  <div style="color: #64748b; font-size: 0.84rem;">Interactive build session and participant questions.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Guidelines, Eligibility & Rules -->
+          <div id="event-rules-card" style="background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 26px;">
+            <h2 style="font-size: 1.3rem; font-weight: 800; color: #07132e; margin-bottom: 14px;">Guidelines &amp; Eligibility</h2>
+            <ul id="event-rules-list" style="margin: 0; padding-left: 20px; color: #475569; font-size: 0.9rem; line-height: 1.7;">
+              <li>Open to college students, engineering graduates, and working software professionals.</li>
+              <li>A laptop with modern browser access is recommended for live interactive tasks.</li>
+              <li>Active participation is required to be eligible for verified certificate generation.</li>
+            </ul>
+          </div>
+
+          <!-- Cancellation & Refund Policy -->
+          <div id="event-refund-card" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 22px;">
+            <h3 style="font-size: 1.05rem; font-weight: 800; color: #07132e; margin: 0 0 6px 0;">Cancellation &amp; Refund Policy</h3>
+            <p id="event-refund-text" style="color: #64748b; font-size: 0.85rem; margin: 0; line-height: 1.6;">
+              Free event registrations may be cancelled at any time before commencement. For paid workshops, cancellation requests submitted at least 48 hours prior to start are eligible for full refund processing.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Sticky Registration Form Card -->
+        <div class="event-detail-right" id="register">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span class="eyebrow" style="margin: 0; color: #1465f4;">SECURE REGISTRATION</span>
+            <span id="right-panel-fee-badge" style="font-size: 0.85rem; font-weight: 800; color: #1465f4; background: #eff6ff; padding: 4px 10px; border-radius: 6px; border: 1px solid #bfdbfe;">Free Entry</span>
+          </div>
+
+          <h2 style="font-size: 1.45rem; font-weight: 800; margin-bottom: 6px; color: #07132e;">Reserve Your Seat</h2>
+          <p style="color: #64748b; font-size: 0.84rem; margin-bottom: 20px; line-height: 1.5;">
+            Fill in your participant details. Your registration and verified credential profile will be generated automatically.
+          </p>
+
+          <div id="dyn-error-msg" style="display: none; padding: 10px 14px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; color: #b91c1c; font-size: 0.85rem; margin-bottom: 14px;"></div>
+
+          <form id="dynamic-event-form" novalidate style="display: grid; gap: 12px;">
+            <input type="hidden" name="event_id" id="dyn-event-id">
+
+            <div>
+              <label for="dyn-name" style="font-size: 0.8rem; font-weight: 700; color: #334155; display: block; margin-bottom: 4px;">Full Name *</label>
+              <input id="dyn-name" name="full_name" required placeholder="e.g. Alex Rivers" style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+            </div>
+
+            <div>
+              <label for="dyn-email" style="font-size: 0.8rem; font-weight: 700; color: #334155; display: block; margin-bottom: 4px;">Email Address *</label>
+              <input id="dyn-email" name="email" type="email" required placeholder="alex@example.com" style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+            </div>
+
+            <div>
+              <label for="dyn-phone" style="font-size: 0.8rem; font-weight: 700; color: #334155; display: block; margin-bottom: 4px;">Phone Number *</label>
+              <input id="dyn-phone" name="phone" type="tel" required pattern="[0-9+() .-]{7,20}" placeholder="+91 00000 00000" style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+            </div>
+
+            <div>
+              <label for="dyn-category" style="font-size: 0.8rem; font-weight: 700; color: #334155; display: block; margin-bottom: 4px;">Participant Category *</label>
+              <select id="dyn-category" name="participant_category" required style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; background: #fff; font-size: 0.9rem;">
+                <option value="">Select category</option>
+                <option value="Student">Student</option>
+                <option value="Working Professional">Working Professional</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="dyn-org" style="font-size: 0.8rem; font-weight: 700; color: #334155; display: block; margin-bottom: 4px;">College / Organisation</label>
+              <input id="dyn-org" name="company_or_college" placeholder="College or company name (optional)" style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+            </div>
+
+            <!-- Dynamic custom fields container -->
+            <div id="dynamic-custom-fields-container" style="display: grid; gap: 10px;"></div>
+
+            <div id="dyn-payment-note" style="display: none; padding: 10px; background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; font-size: 0.8rem; color: #92400e;">
+              💳 This is a verified paid event. Submitting opens secure Razorpay checkout.
+            </div>
+
+            <!-- Mandatory Terms & Conditions acceptance -->
+            <div style="margin-top: 6px;">
+              <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.8rem; color: #475569; cursor: pointer;">
+                <input type="checkbox" id="dyn-terms-agree" name="terms_consent" required style="margin-top: 3px;">
+                <span>I agree to the <button type="button" class="open-policy-btn" data-policy-type="terms" style="background: none; border: none; padding: 0; color: #1465f4; text-decoration: underline; cursor: pointer;">Terms &amp; Conditions</button> and <button type="button" class="open-policy-btn" data-policy-type="privacy" style="background: none; border: none; padding: 0; color: #1465f4; text-decoration: underline; cursor: pointer;">Privacy Policy</button>. *</span>
+              </label>
+            </div>
+
+            <button class="button button-primary form-submit" id="dyn-submit-btn" type="submit" style="margin-top: 14px; width: 100%; padding: 12px; font-weight: 700;">
+              <span id="dyn-btn-text">Confirm Registration</span> <span>→</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 4-Column Footer with "Visit Our Website" -->
+  <footer class="enhanced-footer">
+    <div class="footer-4col-grid">
+      <div class="footer-col">
+        <a href="/" class="footer-brand-title portal-brand-link">
+          <img src="/assets/xeyr-symbol.png" alt="XEYR Symbol">
+          <div>
+            <strong>XEYR</strong>
+            <small style="display: block; font-size: 0.48rem; color: #7f91b1; letter-spacing: 0.12em; font-weight: 700;">TECHNOLOGIES PRIVATE LIMITED</small>
+          </div>
+        </a>
+        <div class="footer-tagline-text" id="footer-tagline">Ideas. Technology. Real Impact.</div>
+        <p id="footer-desc">
+          XEYR Technologies Private Limited develops enterprise software, intelligent automation, and hands-on learning experiences.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="/events/#events-catalog">Explore Events</a></li>
+          <li><a href="/events/#events-catalog">Upcoming Events</a></li>
+          <li><a href="/events/#events-catalog">Completed Events</a></li>
+          <li><a href="/events/#gallery">Gallery</a></li>
+          <li><a href="/events/#leaderboard">Leaderboard</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/events/#sec-who-we-are">Who We Are</a></li>
+          <li><a href="/#services" class="visit-company-link">Services</a></li>
+          <li><a href="/events/#contact-section">Contact Us</a></li>
+        </ul>
+        <a href="/" class="btn-visit-company visit-company-link">
+          Visit Our Website <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Policies and Support</h4>
+        <ul>
+          <li><button type="button" class="open-policy-btn" data-policy-type="privacy">Privacy Policy</button></li>
+          <li><button type="button" class="open-policy-btn" data-policy-type="terms">Terms and Conditions</button></li>
+          <li><button type="button" class="open-policy-btn" data-policy-type="refund">Refund Policy</button></li>
+          <li><a href="/verify-certificate/">Certificate Verification</a></li>
+          <li><a href="mailto:xeyrtechnologies@gmail.com">Event Support</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="enhanced-footer-bottom">
+      <div>© <span class="current-year"></span> XEYR Technologies Private Limited. All rights reserved.</div>
+      <div class="enhanced-footer-bottom-links">
+        <button type="button" class="open-policy-btn" data-policy-type="privacy">Privacy Policy</button>
+        <span>·</span>
+        <button type="button" class="open-policy-btn" data-policy-type="terms">Terms</button>
+        <span>·</span>
+        <button type="button" class="open-policy-btn" data-policy-type="refund">Refunds</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Policy Dialog -->
+  <dialog class="register-dialog" id="policy-dialog">
+    <form method="dialog" class="dialog-close-form"><button class="dialog-close" aria-label="Close form">×</button></form>
+    <p class="eyebrow">XEYR TECHNOLOGIES · LEGAL &amp; POLICIES</p>
+    <h2 id="policy-modal-title" style="font-size: 1.5rem;">Policy Title</h2>
+    <div id="policy-modal-body" style="color: #475569; font-size: 0.88rem; line-height: 1.7; margin-top: 14px;"></div>
+  </dialog>
+
+  <!-- Success Dialog -->
+  <dialog class="success-dialog" id="portal-success-dialog">
+    <form method="dialog" class="dialog-close-form"><button class="dialog-close" aria-label="Close dialog">×</button></form>
+    <div class="success-symbol">✓</div>
+    <p class="eyebrow" style="color: #059669;">SUCCESS</p>
+    <h2 id="success-modal-title">Registration Confirmed!</h2>
+    <p id="success-modal-msg" style="color: #475569;"></p>
+    <div id="success-modal-ref-wrap" style="display: none; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 8px 14px; margin-bottom: 18px;">
+      <span style="font-size: 0.76rem; color: #166534; font-weight: 700;">REFERENCE NUMBER</span>
+      <div id="success-modal-ref" style="font-family: monospace; font-size: 1.1rem; font-weight: 800; color: #15803d;"></div>
+    </div>
+    <button class="button button-primary" type="button" onclick="document.getElementById('portal-success-dialog').close()" style="width: 100%;">
+      Great, thank you!
+    </button>
+  </dialog>
+
+  <script src="/portal.js"></script>
+  <script>
+    // Fetch event detail by slug or query param
+    async function loadCurrentEvent() {
+      const parts = window.location.pathname.split('/').filter(Boolean);
+      let slug = parts[1]; // /events/<slug>/
+      if (!slug) {
+        const urlParams = new URLSearchParams(window.location.search);
+        slug = urlParams.get('slug') || urlParams.get('id');
+      }
+
+      if (!slug) {
+        // Fallback to first available upcoming event
+        const res = await fetch('/api/events/public/');
+        const data = await res.json();
+        if (data.upcoming_events && data.upcoming_events.length > 0) {
+          populateEvent(data.upcoming_events[0]);
+        }
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/events/${slug}/`);
+        if (!res.ok) throw new Error('Not found');
+        const ev = await res.json();
+        populateEvent(ev);
+      } catch {
+        document.getElementById('event-detail-title').textContent = 'Event Not Found';
+        document.getElementById('event-detail-desc').textContent = 'The requested workshop or event may have ended or been rescheduled. Please explore other upcoming events.';
+      }
+    }
+
+    function populateEvent(ev) {
+      document.title = `${ev.title} | XEYR Technologies Events Portal`;
+      document.getElementById('dyn-event-id').value = ev.id;
+      document.getElementById('event-detail-title').textContent = ev.title;
+      document.getElementById('event-detail-tag').textContent = (ev.event_type || 'WORKSHOP').toUpperCase();
+      document.getElementById('event-detail-mode-badge').textContent = (ev.mode || 'ONLINE').toUpperCase();
+      document.getElementById('event-detail-date').textContent = `📅 ${ev.date_time || ev.event_date || 'Upcoming'}`;
+      document.getElementById('event-detail-venue').textContent = `📍 ${ev.venue || 'Online'}`;
+      if (ev.organizer) {
+        document.getElementById('event-detail-organizer').textContent = `🏢 ${ev.organizer}`;
+      }
+
+      // Speaker / Mentor Profile
+      if (Array.isArray(ev.mentors) && ev.mentors.length > 0) {
+        const m = ev.mentors[0];
+        document.getElementById('speaker-name').textContent = m.name || 'Lead Instructor';
+        document.getElementById('speaker-title').textContent = `${m.role || 'Technical Mentor'} · ${m.company || ev.organizer || 'XEYR Technologies'}`;
+        if (m.bio) document.getElementById('speaker-bio').textContent = m.bio;
+        if (m.photo || m.image) {
+          const img = document.getElementById('speaker-photo');
+          img.src = m.photo || m.image;
+          img.style.display = 'block';
+          document.getElementById('speaker-fallback-avatar').style.display = 'none';
+        }
+      } else if (ev.organizer) {
+        document.getElementById('speaker-name').textContent = `${ev.organizer} Faculty Lead`;
+        document.getElementById('speaker-title').textContent = `Workshop Director · ${ev.organizer}`;
+      }
+
+      // Overview
+      const fullDesc = ev.full_description || ev.description || ev.short_description || 'Hands-on practical engineering workshop conducted by XEYR Technologies.';
+      document.getElementById('event-detail-desc').innerHTML = fullDesc.replace(/\n\n/g, '<br><br>');
+
+      // Topics & Learning Outcomes
+      if (Array.isArray(ev.learning_outcomes) && ev.learning_outcomes.length > 0) {
+        document.getElementById('event-topics-list').innerHTML = ev.learning_outcomes.map(item => `
+          <div style="display: flex; gap: 10px; align-items: flex-start; color: #334155; font-size: 0.92rem;">
+            <span style="color: #1465f4; font-weight: bold;">✓</span>
+            <span>${item}</span>
+          </div>
+        `).join('');
+      }
+
+      // Agenda & Schedule
+      if (Array.isArray(ev.schedule) && ev.schedule.length > 0) {
+        document.getElementById('event-agenda-list').innerHTML = ev.schedule.map((item, idx) => `
+          <div style="display: flex; gap: 16px; border-left: 2px solid ${idx % 2 === 0 ? '#1465f4' : '#27d4f4'}; padding-left: 14px;">
+            <strong style="color: #1465f4; font-size: 0.88rem; width: 85px; flex-shrink: 0;">${item.time || `Phase ${idx+1}`}</strong>
+            <div>
+              <div style="font-weight: 700; color: #07132e; font-size: 0.92rem;">${item.title || item.session || 'Session'}</div>
+              <div style="color: #64748b; font-size: 0.84rem;">${item.description || item.topics || ''}</div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Eligibility & Rules
+      if (ev.eligibility || ev.guidelines) {
+        const rules = [
+          ev.eligibility,
+          ev.guidelines,
+          'Active attendance and submission of session tasks required for verifiable credential issuance.'
+        ].filter(Boolean);
+        document.getElementById('event-rules-list').innerHTML = rules.map(r => `<li>${r}</li>`).join('');
+      }
+
+      // Refund Policy
+      if (ev.refund_policy) {
+        document.getElementById('event-refund-text').textContent = ev.refund_policy;
+      }
+
+      // Poster
+      const poster = ev.poster || ev.poster_url;
+      if (poster) {
+        document.getElementById('event-detail-visual').style.backgroundImage = `url('${poster}')`;
+      }
+
+      // Fee Badges
+      const feeLeft = document.getElementById('event-detail-fee');
+      const feeRight = document.getElementById('right-panel-fee-badge');
+      const btnText = document.getElementById('dyn-btn-text');
+      const payNote = document.getElementById('dyn-payment-note');
+
+      if (ev.is_paid && ev.fee_amount > 0) {
+        const feeStr = `₹${ev.fee_amount} (${ev.currency || 'INR'})`;
+        feeLeft.textContent = feeStr;
+        feeRight.textContent = feeStr;
+        feeRight.style.color = '#b45309';
+        feeRight.style.background = '#fef3c7';
+        feeRight.style.borderColor = '#fde68a';
+        payNote.style.display = 'block';
+        btnText.textContent = `Proceed to Pay ₹${ev.fee_amount}`;
+      } else {
+        feeLeft.textContent = 'Free Entry';
+        feeRight.textContent = 'Free Entry';
+        payNote.style.display = 'none';
+        btnText.textContent = 'Confirm Free Registration';
+      }
+
+      // Dynamic Form Fields Population (Filter out built-in default fields to prevent duplicate rendering)
+      const dynContainer = document.getElementById('dynamic-custom-fields-container');
+      if (dynContainer) dynContainer.innerHTML = '';
+      if (Array.isArray(ev.form_fields) && ev.form_fields.length > 0 && dynContainer) {
+        const defaultNames = ['full_name', 'email', 'phone', 'participant_category', 'company_or_college', 'category'];
+        const customFields = ev.form_fields.filter(f => !defaultNames.includes((f.field_name || '').toLowerCase().trim()));
+
+        customFields.forEach(field => {
+          const wrapper = document.createElement('div');
+          wrapper.style.display = 'grid';
+          wrapper.style.gap = '4px';
+
+          const reqMark = field.is_required ? ' *' : '';
+          const label = `<label for="fld-${field.id}" style="font-size: 0.8rem; font-weight: 700; color: #334155;">${field.field_label}${reqMark}</label>`;
+          let input = '';
+          const reqAttr = field.is_required ? 'required' : '';
+          const ftype = (field.field_type || 'text').toLowerCase();
+
+          if (ftype === 'textarea') {
+            input = `<textarea id="fld-${field.id}" name="${field.field_name}" ${reqAttr} rows="2" placeholder="${field.placeholder || ''}" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.88rem;"></textarea>`;
+          } else if (ftype === 'dropdown') {
+            const opts = (field.options || '').split(/[\n,]+/).map(o => o.trim()).filter(Boolean);
+            input = `<select id="fld-${field.id}" name="${field.field_name}" ${reqAttr} style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.88rem; background: #fff;"><option value="">Select option</option>${opts.map(o => `<option value="${o}">${o}</option>`).join('')}</select>`;
+          } else if (ftype === 'consent') {
+            input = `<label style="display:flex; align-items:center; gap:8px; font-weight:normal; font-size:0.82rem;"><input type="checkbox" id="fld-${field.id}" name="${field.field_name}" ${reqAttr}> ${field.placeholder || field.field_label}</label>`;
+          } else {
+            const inputType = ftype === 'email' ? 'email' : (ftype === 'phone' ? 'tel' : 'text');
+            input = `<input id="fld-${field.id}" type="${inputType}" name="${field.field_name}" ${reqAttr} placeholder="${field.placeholder || ''}" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.88rem;">`;
+          }
+          wrapper.innerHTML = ftype === 'consent' ? input : `${label}${input}`;
+          dynContainer.appendChild(wrapper);
+        });
+      }
+
+      // Check registration status
+      if (ev.is_registration_open === false) {
+        const submitBtn = document.getElementById('dyn-submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.6';
+        submitBtn.style.cursor = 'not-allowed';
+        submitBtn.textContent = 'Registrations Closed';
+      }
+    }
+
+    loadCurrentEvent();
+  </script>
+</body>
+</html>
+

@@ -41,11 +41,10 @@
       <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
       <nav class="nav" aria-label="Main navigation">
         <a href="#home" class="nav-link active">Home</a>
-        <a href="#events" class="nav-link">Workshops &amp; Events</a>
         <a href="#services" class="nav-link">Services</a>
         <a href="#about" class="nav-link">About</a>
         <a href="#contact" class="nav-link">Contact</a>
-        <a href="#register" class="button button-small button-primary">Register <span aria-hidden="true">↗</span></a>
+        <a href="#contact" class="button button-small button-primary">Get in Touch <span aria-hidden="true">→</span></a>
       </nav>
     </header>
 
@@ -58,7 +57,7 @@
           <p class="hero-text">We bring people, technology and practical thinking together to solve business challenges, build digital products and connect learners with real-world knowledge.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#services">Explore our services <span aria-hidden="true">→</span></a>
-            <a class="button button-outline" href="#events">Explore events</a>
+            <a class="button button-outline" href="#contact">Contact XEYR <span aria-hidden="true">→</span></a>
           </div>
           <div class="hero-proof"><span class="proof-line"></span><span>Ideas <b>·</b> Technology <b>·</b> Real Impact</span></div>
         </div>
@@ -123,19 +122,40 @@
         </div>
       </section>
 
-      <section class="events-section" id="events">
+      <section class="events-section reveal-on-scroll" id="events">
         <div class="section-wrap section-pad">
           <div class="section-heading">
             <div><p class="eyebrow">LEARN · CONNECT · CREATE</p><h2>What’s happening<br><span class="gradient-text">at XEYR?</span></h2></div>
             <p>Explore upcoming workshops, learning sessions and community events. Register your interest and we’ll share confirmed details.</p>
           </div>
-          <div class="event-controls"><span class="event-count">EVENTS &amp; WORKSHOPS</span><div><button class="icon-button" id="events-prev" aria-label="Previous events">←</button><button class="icon-button" id="events-next" aria-label="Next events">→</button></div></div>
-          <div class="event-grid" id="event-grid">
-            <article class="event-card"><div class="event-visual event-photo event-photo-one"><span class="event-tag">WORKSHOP</span><span class="visual-caption">LEARN BY DOING</span></div><div class="event-content"><div class="event-meta"><span>Upcoming session</span><span>Online / Offline</span></div><h3>Technology &amp; Innovation Workshop</h3><p>Practical learning with industry-relevant ideas, tools and demonstrations.</p><button class="text-link register-event" data-event="Technology & Innovation Workshop">Register interest <span>↗</span></button></div></article>
-            <article class="event-card"><div class="event-visual event-photo event-photo-two"><span class="event-tag">EXPERT SESSION</span><span class="visual-caption">INSIGHT MEETS ACTION</span></div><div class="event-content"><div class="event-meta"><span>Upcoming session</span><span>Students &amp; learners</span></div><h3>Industry Insights &amp; Career Skills</h3><p>Connect with professionals and explore the skills used in real-world work.</p><button class="text-link register-event" data-event="Industry Insights & Career Skills">Register interest <span>↗</span></button></div></article>
-            <article class="event-card"><div class="event-visual event-photo event-photo-three"><span class="event-tag">COMMUNITY</span><span class="visual-caption">IDEAS INTO IMPACT</span></div><div class="event-content"><div class="event-meta"><span>Coming soon</span><span>Founders &amp; builders</span></div><h3>Build, Collaborate &amp; Grow</h3><p>A space for curious minds, collaborators and knowledge partners to connect.</p><button class="text-link register-event" data-event="Build, Collaborate & Grow">Register interest <span>↗</span></button></div></article>
+
+          <!-- Dynamic Event Tabs (Upcoming vs Completed Archive) -->
+          <div class="event-tabs" id="event-tabs-wrap" style="display: none;">
+            <button class="event-tab-btn active" id="tab-upcoming" type="button">Upcoming Events (<span id="upcoming-count-badge">0</span>)</button>
+            <button class="event-tab-btn" id="tab-completed" type="button">Completed Events Archive (<span id="completed-count-badge">0</span>)</button>
           </div>
-          <p class="small-note">These are preview listings for the frontend. Add verified event names, dates, fees and venues before publishing registrations.</p>
+
+          <div class="event-controls"><span class="event-count" id="event-view-label">UPCOMING EVENTS &amp; WORKSHOPS</span><div><button class="icon-button" id="events-prev" aria-label="Previous events">←</button><button class="icon-button" id="events-next" aria-label="Next events">→</button></div></div>
+
+          <!-- Active Events Grid -->
+          <div class="event-grid stagger-children" id="event-grid">
+            <div class="event-loading-placeholder" style="grid-column: 1/-1; text-align: center; padding: 40px 20px; color: #64748b;">
+              <p>Loading scheduled workshops and events...</p>
+            </div>
+          </div>
+
+
+          <!-- Clean Notification CTA when NO upcoming events exist -->
+          <div id="event-empty-notification-cta" style="display: none;">
+            <div class="event-notify-cta-card">
+              <p class="eyebrow">STAY CONNECTED</p>
+              <h3>Exciting Events Are Coming Soon!</h3>
+              <p>Stay connected with XEYR Technologies. Leave your details and we'll email you when our next workshop or event is announced.</p>
+              <button class="button button-primary" id="btn-open-notify-modal" type="button">Notify Me About Upcoming Events ↗</button>
+            </div>
+          </div>
+
+          <p class="small-note" id="event-status-footnote">Verified real-time event schedules with automated registration and Razorpay fee verification.</p>
         </div>
       </section>
 
@@ -200,12 +220,180 @@
       </section>
 
       <section class="section-wrap section-pad contact-section" id="contact"><div class="contact-panel"><div class="contact-copy"><p class="eyebrow">START A CONVERSATION</p><h2>What challenge<br>can we solve <span class="gradient-text">together?</span></h2><p>Tell us what you’re building, what your organisation needs or how you’d like to collaborate. We’ll review your enquiry and get back to you.</p><a class="button button-primary" href="mailto:xeyrtechnologies@gmail.com?subject=Enquiry%20for%20XEYR%20Technologies">Email XEYR <span>↗</span></a></div>
-        <div class="contact-details"><div class="contact-item"><span class="contact-icon">✉</span><div><small>EMAIL US</small><a href="mailto:xeyrtechnologies@gmail.com">xeyrtechnologies@gmail.com</a></div></div><div class="contact-item"><span class="contact-icon">☎</span><div><small>CALL US</small><a href="tel:+918056253897">+91 80562 53897</a></div></div><div class="contact-item"><span class="contact-icon">✦</span><div><small>OUR BELIEF</small><p>Ideas | Technology | Real Impact</p></div></div></div></div></section>
       <section class="closing-quote"><p>“Every challenge has a solution.</p><p class="gradient-text">Let’s build a better way forward, together.”</p><span>— XEYR TECHNOLOGIES PRIVATE LIMITED</span></section>
     </main>
 
-    <footer class="footer"><div class="footer-main"><a href="#home" class="brand footer-brand"><img src="assets/xeyr-symbol.png" alt="" class="brand-symbol"><span><strong>XEYR</strong><small>TECHNOLOGIES PRIVATE LIMITED</small></span></a><p>Ideas | Technology | Real Impact<br><span>Every challenge has a solution. Let’s build a better way forward, together.</span></p><div class="footer-contact"><a href="mailto:xeyrtechnologies@gmail.com">xeyrtechnologies@gmail.com</a><a href="tel:+918056253897">+91 80562 53897</a></div></div><div class="footer-bottom"><span>© <span id="year"></span> XEYR Technologies Private Limited. All rights reserved.</span><div><a href="#services">Services</a><a href="#events">Events</a><a href="#contact">Contact</a></div></div></footer>
+    <footer class="enhanced-footer" aria-label="Website Footer">
+      <div class="footer-4col-grid">
+        <!-- Column 1: Branding -->
+        <div class="footer-col">
+          <a href="#home" class="footer-brand-title">
+            <img src="assets/xeyr-symbol.png" alt="XEYR Symbol">
+            <div>
+              <strong>XEYR</strong>
+              <small style="display: block; font-size: 0.48rem; color: #7f91b1; letter-spacing: 0.12em; font-weight: 700;">TECHNOLOGIES PRIVATE LIMITED</small>
+            </div>
+          </a>
+          <div class="footer-tagline-text">Ideas. Technology. Real Impact.</div>
+          <p>
+            XEYR Technologies Private Limited brings people, technology, and practical thinking together to build digital products, enterprise solutions, and learning opportunities.
+          </p>
+        </div>
+
+        <!-- Column 2: Explore -->
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/events/">Events Portal</a></li>
+            <li><a href="#services">Our Services</a></li>
+            <li><a href="#skillbridge">SkillBridge</a></li>
+            <li><a href="#about">About XEYR</a></li>
+            <li><a href="#collaborate">Collaborate</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Company -->
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">Who We Are</a></li>
+            <li><a href="#services">What We Do</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+          <a href="#home" class="btn-visit-company">
+            Visit Our Website <span aria-hidden="true">↑</span>
+          </a>
+        </div>
+
+        <!-- Column 4: Policies and Support -->
+        <div class="footer-col">
+          <h4>Policies and Support</h4>
+          <ul>
+            <li><a href="/events/#contact-section">Direct Support</a></li>
+            <li><a href="/verify-certificate/">Verify Certificate</a></li>
+            <li><a href="mailto:xeyrtechnologies@gmail.com">xeyrtechnologies@gmail.com</a></li>
+            <li><a href="tel:+918056253897">+91 80562 53897</a></li>
+          </ul>
+          <div class="footer-social-wrap" id="footer-social-wrap" style="margin-top: 14px;"></div>
+        </div>
+      </div>
+
+      <div class="enhanced-footer-bottom">
+        <div>© <span id="year"></span> XEYR Technologies Private Limited. All rights reserved.</div>
+        <div class="enhanced-footer-bottom-links">
+          <a href="#services">Services</a>
+          <span>·</span>
+          <a href="/events/">Events Portal</a>
+          <span>·</span>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
   </div>
+
+  <!-- Dynamic Event Registration Dialog with Razorpay Integration -->
+  <dialog class="register-dialog" id="dynamic-event-dialog">
+    <form method="dialog" class="dialog-close-form"><button class="dialog-close" aria-label="Close form">×</button></form>
+    <p class="eyebrow" id="dyn-event-type">XEYR EVENT REGISTRATION</p>
+    <h2 id="dyn-event-title" style="font-size: 1.6rem; margin-bottom: 6px;">Event Title</h2>
+    <div class="event-badge-row" id="dyn-event-meta" style="margin-bottom: 16px;">
+      <span class="event-fee-badge" id="dyn-event-fee">Free</span>
+      <span class="event-capacity-badge" id="dyn-event-date">Upcoming</span>
+    </div>
+    <p id="dyn-event-desc" style="color: #64748b; font-size: 0.88rem; margin-bottom: 18px;"></p>
+
+    <div id="dyn-error-msg" style="display: none; padding: 10px 14px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; color: #b91c1c; font-size: 0.85rem; margin-bottom: 14px;"></div>
+
+    <form id="dynamic-event-form" novalidate>
+      <input type="hidden" name="event_id" id="dyn-event-id">
+      <label for="dyn-name">Full Name <span>*</span></label>
+      <input id="dyn-name" name="full_name" autocomplete="name" required placeholder="Your full name">
+
+      <label for="dyn-email">Email Address <span>*</span></label>
+      <input id="dyn-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+
+      <label for="dyn-phone">Phone Number <span>*</span></label>
+      <input id="dyn-phone" name="phone" type="tel" required pattern="[0-9+() .-]{7,20}" placeholder="+91 00000 00000">
+
+      <label for="dyn-category">Participant Category <span>*</span></label>
+      <select id="dyn-category" name="participant_category" required>
+        <option value="">Select your category</option>
+        <option value="Student">Student</option>
+        <option value="Working Professional">Working Professional</option>
+      </select>
+
+      <label for="dyn-org">College / Company</label>
+      <input id="dyn-org" name="company_or_college" placeholder="College or organisation name (optional)">
+
+      <!-- Container for Admin-Configured Dynamic Form Fields -->
+      <div id="dynamic-custom-fields-container" style="display: grid; gap: 6px;"></div>
+
+      <div id="dyn-payment-note" style="display: none; padding: 12px; background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; font-size: 0.8rem; color: #92400e; margin-top: 14px;">
+        💳 This is a verified paid event. Clicking continue will open the secure <strong>Razorpay Checkout</strong> experience.
+      </div>
+
+      <button class="button button-primary form-submit" id="dyn-submit-btn" type="submit" style="margin-top: 18px;">
+        <span id="dyn-btn-text">Confirm Registration</span> <span>→</span>
+      </button>
+    </form>
+  </dialog>
+
+  <!-- Event Notification Subscription Dialog -->
+  <dialog class="register-dialog" id="event-subscribe-dialog">
+    <form method="dialog" class="dialog-close-form"><button class="dialog-close" aria-label="Close form">×</button></form>
+    <p class="eyebrow">XEYR EVENT ALERTS</p>
+    <h2>Exciting Events Are Coming Soon!</h2>
+    <p>Stay connected with XEYR Technologies. Leave your details and we'll email you when our next workshop or event is announced.</p>
+    
+    <div id="sub-error-msg" style="display: none; padding: 10px 14px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; color: #b91c1c; font-size: 0.85rem; margin-bottom: 12px;"></div>
+
+    <form id="event-subscribe-form" novalidate>
+      <!-- Anti-bot honeypot field (hidden from legitimate users) -->
+      <div style="position: absolute; left: -9999px; top: -9999px;" aria-hidden="true">
+        <label for="sub-hp">Website</label>
+        <input type="text" id="sub-hp" name="website_url" tabindex="-1" autocomplete="off">
+      </div>
+
+      <label for="sub-name">Your Full Name <span>*</span></label>
+      <input id="sub-name" name="name" required placeholder="e.g. Alex Rivers">
+
+      <label for="sub-email">Email Address <span>*</span></label>
+      <input id="sub-email" name="email" type="email" required placeholder="you@example.com">
+
+      <label for="sub-cat">Topics of Interest</label>
+      <select id="sub-cat" name="categories">
+        <option value="ALL">All Events &amp; Workshops</option>
+        <option value="AI_AUTOMATION">AI &amp; Automation</option>
+        <option value="SOFTWARE_WEB">Software &amp; Web Development</option>
+        <option value="CAREER_SKILLS">Industry Skills &amp; Career</option>
+        <option value="HACKATHONS">Hackathons &amp; Competitions</option>
+      </select>
+
+      <div style="margin-top: 14px;">
+        <label style="display: flex; align-items: flex-start; gap: 8px; font-weight: normal; font-size: 0.85rem; color: #334155; cursor: pointer;">
+          <input type="checkbox" id="sub-consent" name="consent" required style="margin-top: 3px;">
+          <span>I consent to receive event announcements and workshop updates from XEYR Technologies via email. <span>*</span></span>
+        </label>
+      </div>
+
+      <p class="form-privacy" style="margin-top: 12px;">We respect your inbox. You can unsubscribe at any time with a single click.</p>
+      <button class="button button-primary form-submit" type="submit" id="sub-submit-btn">
+        <span>Notify Me</span> <span>↗</span>
+      </button>
+    </form>
+  </dialog>
+
+  <!-- Social Media QR Code Viewer Dialog -->
+  <dialog class="qr-dialog" id="qr-preview-dialog">
+    <form method="dialog" class="dialog-close-form"><button class="dialog-close" aria-label="Close QR modal">×</button></form>
+    <p class="eyebrow" id="qr-platform-label">OFFICIAL SOCIAL QR</p>
+    <h3 id="qr-platform-title" style="margin: 0 0 8px; font-size: 1.4rem; color: #0b1a3a;">Scan to Connect</h3>
+    <p style="color: #64748b; font-size: 0.85rem; margin: 0;">Scan this official QR code with your mobile camera to visit our official page.</p>
+    <img id="qr-modal-image" src="" alt="Official Social QR Code">
+    <div style="margin-top: 12px;">
+      <a id="qr-open-external" href="#" target="_blank" rel="noopener noreferrer" class="button button-small button-outline">Open Link Directly ↗</a>
+    </div>
+  </dialog>
 
   <dialog class="register-dialog" id="college-dialog">
     <form method="dialog" class="dialog-close-form"><button class="dialog-close" aria-label="Close college service form">×</button></form>
@@ -230,12 +418,12 @@
       <label for="individual-skills">Skills / topics you can teach <span>*</span></label><textarea id="individual-skills" name="skills" required rows="3" placeholder="e.g. web development, AI, design, sales, cloud"></textarea>
       <label for="individual-role">Your profile <span>*</span></label><select id="individual-role" name="profile" required><option value="">Select one</option><option>Freelancer</option><option>Working professional</option><option>Developer / designer</option><option>Trainer / educator</option><option>Company / training provider</option><option>Other expert</option></select>
       <label for="individual-resume">Resume / portfolio (PDF, DOC or DOCX)</label><input id="individual-resume" name="resume" type="file" accept=".pdf,.doc,.docx">
-      <p class="form-privacy">In this frontend preview, the form details are stored locally and the selected file is not uploaded. Connect secure backend storage before launch.</p>
+      <p class="form-privacy">Your application and details are securely processed by XEYR Technologies. Our SkillBridge team will review your qualifications and contact you regarding matching opportunities.</p>
       <button class="button button-primary form-submit" type="submit">Submit application <span>→</span></button>
     </form>
   </dialog>
 
-  <dialog class="register-dialog" id="register-dialog"><form method="dialog" class="dialog-close-form"><button class="dialog-close" aria-label="Close registration form">×</button></form><p class="eyebrow">XEYR EVENTS</p><h2>Register your interest</h2><p id="register-description">Share your contact details and we’ll send confirmed event information.</p><form id="registration-form"><input type="hidden" name="event" id="selected-event"><label for="reg-name">Name <span>*</span></label><input id="reg-name" name="name" autocomplete="name" required placeholder="Your full name"><label for="reg-company">Company / college name</label><input id="reg-company" name="company" autocomplete="organization" placeholder="Company or college (optional)"><label for="reg-email">Email address <span>*</span></label><input id="reg-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"><label for="reg-phone">Phone number <span>*</span></label><input id="reg-phone" name="phone" type="tel" required pattern="[0-9+() .-]{7,20}" placeholder="+91 00000 00000"><button class="button button-primary form-submit" type="submit">Submit interest <span>→</span></button></form></dialog>
+
   <dialog class="register-dialog" id="solvex-dialog">
     <form method="dialog" class="dialog-close-form"><button class="dialog-close" aria-label="Close SolveX enquiry form">×</button></form>
     <p class="eyebrow">SOLVEX · BUSINESS ENQUIRY</p><h2>Let’s solve your challenge.</h2><p>Leave three basic details and XEYR will contact you to understand what you need.</p>
@@ -246,8 +434,11 @@
       <button class="button button-primary form-submit" type="submit">Request a callback <span>→</span></button>
     </form>
   </dialog>
-  <dialog class="success-dialog" id="success-dialog"><div class="success-symbol">✓</div><p class="eyebrow">THANK YOU FOR CONNECTING</p><h2 id="success-title">We’ll reach out soon.</h2><p id="success-message">Your details have been received in this demo.</p><button class="button button-primary" id="success-close" type="button">Continue exploring</button></dialog>
+  <dialog class="success-dialog" id="success-dialog"><div class="success-symbol">✓</div><p class="eyebrow">THANK YOU FOR CONNECTING</p><h2 id="success-title">We’ll reach out soon.</h2><p id="success-message">Your details have been received by XEYR Technologies.</p><button class="button button-primary" id="success-close" type="button">Continue exploring</button></dialog>
   <div class="toast" role="status" aria-live="polite" id="toast"></div>
+
+  <!-- Official Razorpay Checkout Library -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

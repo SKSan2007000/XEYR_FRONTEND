@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07132e">
+  <title>My Participant Dashboard | XEYR Technologies Events Portal</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="site-shell">
+  <header class="header">
+    <a href="/" class="brand portal-brand-link" aria-label="Return to XEYR Technologies Homepage" title="Return to XEYR Technologies Homepage">
+      <img src="/assets/xeyr-symbol.png" alt="XEYR Technologies Logo" class="brand-symbol">
+      <span><strong>XEYR</strong><small>TECHNOLOGIES PRIVATE LIMITED</small></span>
+    </a>
+    <button class="menu-toggle" id="portal-menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="nav" id="portal-nav" aria-label="Events Portal Navigation">
+      <a href="/" class="nav-link portal-brand-link">Home</a>
+      <a href="/events/" class="nav-link">Explore Events</a>
+      <a href="/events/#gallery" class="nav-link">Gallery</a>
+      <a href="/events/#leaderboard" class="nav-link">Leaderboard</a>
+      <a href="/events/#contact-section" class="nav-link">Contact</a>
+      <a href="/dashboard/" class="nav-link" id="nav-admin-link">Enterprise Portal</a>
+      <button class="button button-small button-outline" id="btn-logout" type="button" style="margin-left: 6px;">Sign Out</button>
+    </nav>
+  </header>
+
+  <main style="padding: 40px 0 80px;">
+    <div class="section-wrap">
+      <!-- Participant Welcome Card -->
+      <div style="background: linear-gradient(135deg, #07132e 0%, #0d275e 100%); color: #fff; border-radius: 24px; padding: 36px 40px; margin-bottom: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; border: 1px solid rgba(39, 212, 244, 0.25);">
+        <div>
+          <span style="font-size: 0.72rem; color: #27d4f4; font-weight: 700; letter-spacing: 0.12em;">PARTICIPANT WORKSPACE</span>
+          <h1 style="font-size: clamp(1.8rem, 3.5vw, 2.4rem); margin: 6px 0 8px 0; color: #fff;" id="dash-user-name">Welcome, Participant</h1>
+          <p style="color: #cbd5e1; font-size: 0.95rem; margin: 0;" id="dash-user-email">Loading participant profile...</p>
+        </div>
+        <div style="display: flex; gap: 12px;">
+          <a href="/events/" class="button button-primary">Browse New Events ↗</a>
+        </div>
+      </div>
+
+      <!-- Dashboard Grid: Registered Events & Issued Certificates -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px;" id="participant-dash-grid">
+        <!-- Registered Events -->
+        <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+          <h2 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 16px; color: #07132e;">My Event Registrations</h2>
+          <div id="dash-registrations-list" style="display: grid; gap: 14px;">
+            <p style="color: #64748b; font-size: 0.88rem;">Loading your registrations...</p>
+          </div>
+        </div>
+
+        <!-- Issued Certificates -->
+        <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+          <h2 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 16px; color: #07132e;">My Issued Certificates</h2>
+          <div id="dash-certificates-list" style="display: grid; gap: 14px;">
+            <p style="color: #64748b; font-size: 0.88rem;">Loading your certificates...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 4-Column Footer with "Visit Our Website" -->
+  <footer class="enhanced-footer">
+    <div class="footer-4col-grid">
+      <div class="footer-col">
+        <a href="/" class="footer-brand-title portal-brand-link">
+          <img src="/assets/xeyr-symbol.png" alt="XEYR Symbol">
+          <div>
+            <strong>XEYR</strong>
+            <small style="display: block; font-size: 0.48rem; color: #7f91b1; letter-spacing: 0.12em; font-weight: 700;">TECHNOLOGIES PRIVATE LIMITED</small>
+          </div>
+        </a>
+        <div class="footer-tagline-text" id="footer-tagline">Ideas. Technology. Real Impact.</div>
+        <p id="footer-desc">
+          XEYR Technologies Private Limited develops enterprise software, intelligent automation, and hands-on learning experiences.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="/events/#events-catalog">Explore Events</a></li>
+          <li><a href="/events/#events-catalog">Upcoming Events</a></li>
+          <li><a href="/events/#events-catalog">Completed Events</a></li>
+          <li><a href="/events/#gallery">Gallery</a></li>
+          <li><a href="/events/#leaderboard">Leaderboard</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/events/#sec-who-we-are">Who We Are</a></li>
+          <li><a href="/#services" class="visit-company-link">Services</a></li>
+          <li><a href="/events/#contact-section">Contact Us</a></li>
+        </ul>
+        <a href="/" class="btn-visit-company visit-company-link">
+          Visit Our Website <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Policies and Support</h4>
+        <ul>
+          <li><button type="button" class="open-policy-btn" data-policy-type="privacy">Privacy Policy</button></li>
+          <li><button type="button" class="open-policy-btn" data-policy-type="terms">Terms and Conditions</button></li>
+          <li><button type="button" class="open-policy-btn" data-policy-type="refund">Refund Policy</button></li>
+          <li><a href="/verify-certificate/">Certificate Verification</a></li>
+          <li><a href="mailto:xeyrtechnologies@gmail.com">Event Support</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="enhanced-footer-bottom">
+      <div>© <span class="current-year"></span> XEYR Technologies Private Limited. All rights reserved.</div>
+      <div class="enhanced-footer-bottom-links">
+        <button type="button" class="open-policy-btn" data-policy-type="privacy">Privacy Policy</button>
+        <span>·</span>
+        <button type="button" class="open-policy-btn" data-policy-type="terms">Terms</button>
+        <span>·</span>
+        <button type="button" class="open-policy-btn" data-policy-type="refund">Refunds</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Policy Dialog -->
+  <dialog class="register-dialog" id="policy-dialog">
+    <form method="dialog" class="dialog-close-form"><button class="dialog-close" aria-label="Close form">×</button></form>
+    <p class="eyebrow">XEYR TECHNOLOGIES · LEGAL &amp; POLICIES</p>
+    <h2 id="policy-modal-title" style="font-size: 1.5rem;">Policy Title</h2>
+    <div id="policy-modal-body" style="color: #475569; font-size: 0.88rem; line-height: 1.7; margin-top: 14px;"></div>
+  </dialog>
+
+  <script src="/portal.js"></script>
+  <script>
+    async function loadParticipantData() {
+      try {
+        const userRes = await fetch('/api/auth/me/', { credentials: 'include' });
+        if (!userRes.ok) {
+          window.location.href = '/dashboard/';
+          return;
+        }
+        const user = await userRes.json();
+        document.getElementById('dash-user-name').textContent = `Welcome, ${user.first_name || user.username}`;
+        document.getElementById('dash-user-email').textContent = `${user.email} · ${user.department || 'Participant'}`;
+
+        // Fetch Registrations
+        const regRes = await fetch('/api/participant/registrations/', { credentials: 'include' });
+        if (regRes.ok) {
+          const regs = await regRes.json();
+          const regContainer = document.getElementById('dash-registrations-list');
+          if (regs.length === 0) {
+            regContainer.innerHTML = `<p style="color: #64748b; font-size: 0.88rem;">No events registered yet. Browse our events to sign up.</p>`;
+          } else {
+            regContainer.innerHTML = regs.map(r => `
+              <div style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <strong style="color: #07132e;">${r.event_title || 'Workshop'}</strong>
+                  <div style="font-size: 0.78rem; color: #64748b;">Ref: ${r.registration_reference} · ${r.event_date || 'Upcoming'}</div>
+                </div>
+                <span class="badge" style="background: #eff6ff; color: #1465f4; font-weight: 700; padding: 4px 8px; border-radius: 6px; font-size: 0.76rem;">
+                  ${r.registration_status}
+                </span>
+              </div>
+            `).join('');
+          }
+        }
+
+        // Fetch Certificates
+        const certRes = await fetch('/api/participant/certificates/', { credentials: 'include' });
+        if (certRes.ok) {
+          const certs = await certRes.json();
+          const certContainer = document.getElementById('dash-certificates-list');
+          if (certs.length === 0) {
+            certContainer.innerHTML = `<p style="color: #64748b; font-size: 0.88rem;">Certificates will be issued here upon verified workshop attendance.</p>`;
+          } else {
+            certContainer.innerHTML = certs.map(c => `
+              <div style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <strong style="color: #07132e;">${c.event_title}</strong>
+                  <div style="font-size: 0.78rem; color: #64748b;">ID: ${c.certificate_id}</div>
+                </div>
+                <a href="/api/certificates/${c.certificate_id}/download/" class="button button-small button-primary" target="_blank">
+                  Download PDF ↗
+                </a>
+              </div>
+            `).join('');
+          }
+        }
+      } catch (err) {
+        console.warn('Dashboard data fetch failed:', err);
+      }
+    }
+
+    document.getElementById('btn-logout')?.addEventListener('click', async () => {
+      await fetch('/api/auth/logout/', { method: 'POST', credentials: 'include' });
+      window.location.href = '/events/';
+    });
+
+    loadParticipantData();
+  </script>
+</body>
+</html>
+
